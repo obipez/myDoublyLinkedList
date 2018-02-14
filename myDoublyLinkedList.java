@@ -1,5 +1,3 @@
-//	import java.util.Scanner;
-
 public class myDoublyLinkedList<E> {
 	Node head;
 	Node tail;
@@ -27,9 +25,9 @@ public class myDoublyLinkedList<E> {
 			Node current = head;
 			int counter = 1;
 			while(counter-1 != index) {
-//				current = current.next;
 				current = current.next;
-//				current.next = head;
+				current.next = current.next.next;
+				current.next.next = current;
 			}
 			data = newData;
 			this.next = current.next;
