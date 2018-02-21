@@ -33,7 +33,7 @@ public class myDoublyLinkedList<E> {
 			this.next = current;
 			this.prev = current.prev;
 			current.prev = this;
-			current.next = this;
+//			current.next = this;
 		}
 	}
 
@@ -90,14 +90,12 @@ public class myDoublyLinkedList<E> {
 	}
 
 	public void removeLast() {
-		Node last = head;
-		System.out.println("Anything");
-		while(last.next != null) {
-			System.out.println(last.data);
-			last = last.next;
+		if(tail == null) {
+			return;
 		}
-		last.prev.next = null;
-		System.out.println(last.prev.data);
+		if (tail != null) {
+			tail = tail.prev;
+		}
 	}
 
 	public void removeThis(int index) {
@@ -164,7 +162,7 @@ public class myDoublyLinkedList<E> {
 ////		whatever.traverseForward();
 ////		System.out.println();
 ////		
-			whatever.addThis("Ryan", 3);
+//			whatever.addThis("Ryan", 3);
 ////		whatever.addLast("Timmy");
 ////		whatever.removeFirst();
 ////		whatever.traverseForward();
@@ -176,7 +174,8 @@ public class myDoublyLinkedList<E> {
 //		whatever.traverseForward();
 //		System.out.println();
 //		
-		whatever.traverseBackward();
+//		whatever.traverseBackward();
+		whatever.traverseForward();
 		System.out.println();
 	}
 }
