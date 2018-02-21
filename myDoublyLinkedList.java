@@ -20,14 +20,12 @@ public class myDoublyLinkedList<E> {
 			prev = null;
 		}
 
+
 		public Node(E newData, int index) {
-			
 			Node current = head;
 			int counter = 1;
 			while(counter-1 != index) {
 				current = current.next;
-				current.next = current.next.next;
-				current.next.next = current;
 			}
 			data = newData;
 			this.next = current.next;
@@ -43,17 +41,6 @@ public class myDoublyLinkedList<E> {
 //				}
 //				System.out.println(current.data);
 //			}
-
-
-	//Assuming that traverse code from before is same as going forward
-//	public void traverseForward() {
-////		Node current = head;
-////		while(current != null) {
-////			System.out.println(current.data);
-////			current = current.next;
-////		}
-//////		System.out.println(current);
-//	}
 
 	public void traverseForward() {
 		Node current = head.next;
@@ -81,19 +68,16 @@ public class myDoublyLinkedList<E> {
 ////			head.prev = new_node;
 //			
 //			head = new_node;
-//			System.out.println("IS ANYTHING HAPPENING HERE?");
 //		}
 //		if(tail == null) {
 //			new_node.next = tail;
 //			new_node.prev = null;
-//			System.out.println("WHAT IS HAPPENING??");
 //			return;
 //		}
 		new_node.next = head.next;
 		head.next.prev = new_node;
 		head.next = new_node;
 		new_node.prev = head;
-		
 	}
 
 
@@ -129,16 +113,26 @@ public class myDoublyLinkedList<E> {
 	public void addLast(E new_data) {
 		Node new_node = new Node();
 		new_node.data = new_data;
-		if(head == null) {
-			head = new Node();
-			new_node.data = new_data;
-			return;
-		}
-		new_node.next = null;
-		Node last = tail;				//changed Node last = head; to tail. Makes a diff???
-		while(last.next != null)
-			last = last.next;
-		last.next = new_node;
+//		if(head == null) {
+//			head = new Node();
+//			new_node.data = new_data;
+//			return;
+//		}
+//		new_node.next = null;
+//		Node last = tail;				//changed Node last = head; to tail. Makes a diff???
+//		while(last.next != null)
+//			last = last.next;
+//		last.next = new_node;
+//		
+//		new_node.next = head.next;
+//		head.next.prev = new_node;
+//		head.next = new_node;
+//		new_node.prev = head;
+		
+		new_node.prev = tail.prev;
+		tail.prev.next = new_node;
+		tail.prev = new_node;
+		new_node.next = tail;
 	}
 
 	public void removeFirst() {
@@ -211,14 +205,24 @@ public class myDoublyLinkedList<E> {
 	public static void main(String[] args) {
 		myDoublyLinkedList<String> whatever = new myDoublyLinkedList<String>();
 
-		whatever.addFirst("Molly");
-		whatever.addFirst("Bongos");
-		whatever.addFirst("Ivan");
-		whatever.addFirst("3");
-		whatever.addFirst("Yoyo");
-		whatever.traverseForward();
+//		whatever.addFirst("Molly");
+//		whatever.addFirst("Bongos");
+//		whatever.addFirst("Ivan");
+//		whatever.addFirst("3");
+//		whatever.addFirst("Yoyo");
+//		whatever.addLast("Clarence");
+//		whatever.traverseForward();
+//		System.out.println();
+//		whatever.removeThis(2);
+//		whatever.traverseForward();
+//		System.out.println();
 		whatever.addThis("Ryan", 3);
+		whatever.addLast("Timmy");
+//		whatever.removeFirst();
 		whatever.traverseForward();
+		System.out.println();
+//		whatever.removeLast();
+//		whatever.traverseBackward();
 		//whatever.traverseBackward();
 		System.out.println();
 	}
