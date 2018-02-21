@@ -29,7 +29,10 @@ public class myDoublyLinkedList<E> {
 				counter++;
 			}
 			data = newData;
-			this.next = current.next;
+//			this.next = current.next;
+			this.next = current;
+			this.prev = current.prev;
+			current.prev = this;
 			current.next = this;
 		}
 	}
@@ -46,7 +49,7 @@ public class myDoublyLinkedList<E> {
 	
 	public void traverseBackward() {
 		Node current = tail.prev;
-		while(current.prev.data != null) {
+		while(current.prev != null) {
 			System.out.println(current.data);
 			current = current.prev;
 		}
@@ -88,12 +91,13 @@ public class myDoublyLinkedList<E> {
 
 	public void removeLast() {
 		Node last = head;
-		Node penultimate = null;
+		System.out.println("Anything");
 		while(last.next != null) {
-			penultimate = last;
+			System.out.println(last.data);
 			last = last.next;
 		}
-		penultimate.next = null;
+		last.prev.next = null;
+		System.out.println(last.prev.data);
 	}
 
 	public void removeThis(int index) {
@@ -152,25 +156,26 @@ public class myDoublyLinkedList<E> {
 		whatever.addFirst("Ivan");
 		whatever.addFirst("3");
 		whatever.addFirst("Yoyo");
-//		whatever.addLast("Clarence");
-//		whatever.traverseForward();
+		whatever.addLast("Clarence");
+		whatever.traverseForward();
 		System.out.println();
 		
-//		whatever.removeThis(2);
+//			whatever.removeThis(2);
+////		whatever.traverseForward();
+////		System.out.println();
+////		
+			whatever.addThis("Ryan", 3);
+////		whatever.addLast("Timmy");
+////		whatever.removeFirst();
+////		whatever.traverseForward();
+////		System.out.println();
+//		
+////		whatever.addThis("Cats", 3);
+////		whatever.changeData("Fishies", 3);
+		whatever.removeLast();
 //		whatever.traverseForward();
 //		System.out.println();
 //		
-//		whatever.addThis("Ryan", 3);
-//		whatever.addLast("Timmy");
-//		whatever.removeFirst();
-//		whatever.traverseForward();
-//		System.out.println();
-		
-//		whatever.changeData("Fishies", 3);
-//		whatever.removeLast();
-//		whatever.traverseForward();
-//		System.out.println();
-		
 		whatever.traverseBackward();
 		System.out.println();
 	}
