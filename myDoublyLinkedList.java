@@ -29,11 +29,11 @@ public class myDoublyLinkedList<E> {
 				counter++;
 			}
 			data = newData;
-//			this.next = current.next;
-			this.next = current;
-			this.prev = current.prev;
-			current.prev = this;
-//			current.next = this;
+			this.next = current.next;
+			head.next.prev = this;
+			current.next = this;
+			this.prev = current;
+			current.next = this;
 		}
 	}
 
@@ -81,12 +81,15 @@ public class myDoublyLinkedList<E> {
 	}
 
 	public void removeFirst() {
-		if(head == null) {
-			return;
-		}
-		if (head != null) {
-			head = head.next;
-		}
+		Node current = head;
+		head = head.next;
+		current.next = null;
+//		if(head == null) {
+//			return;
+//		}
+//		if (head != null) {
+//			head = head.next;
+//		}
 	}
 
 	public void removeLast() {
@@ -114,15 +117,27 @@ public class myDoublyLinkedList<E> {
 
 	public void changeData(E new_data, int index) {
 		Node new_node = new Node(new_data, index);
-//		Node new_node = head;							
-		Node prev = null;								
-		while (new_node != null && index >= 0) {
-			index--;
-			prev = new_node;
-			new_node = new_node.next;
-		}												
-		if (prev != null)
-			prev.data = new_data;
+		Node current = new_node;
+		current = current.next;
+		current.prev.next = current.next;
+		current.next.prev = current.prev;
+		current.next = null;
+		current.prev = null;
+		
+		
+//		Node current = head;
+//		int counter = 1;
+//		while(counter-1 != index) {
+//			current = current.next;
+//			counter++;
+//		}
+//		data = newData;
+//		this.next = current.next;
+//		head.next.prev = this;
+//		current.next = this;
+//		this.prev = current;
+//		current.next = this;
+		
 	}
 
 //	public int size() {
@@ -163,21 +178,21 @@ public class myDoublyLinkedList<E> {
 		whatever.removeThis(2);
 		whatever.traverseForward();
 		System.out.println();
+		
+		whatever.removeFirst();
+		whatever.addThis("Cats", 3);
+		whatever.traverseForward();
+		System.out.println();
 
-//		whatever.addThis("Ryan", 3);
-//		whatever.addLast("Timmy");
-//		whatever.removeFirst();
-//		whatever.traverseForward();
-//		System.out.println();
-//
-//		whatever.addThis("Cats", 3);
-//		whatever.changeData("Fishies", 3);
+		whatever.changeData("Fishies", 3);
 //		whatever.removeLast();
 //		whatever.traverseForward();
 //		System.out.println();
-//		//		
-		whatever.traverseBackward();
-//		whatever.traverseForward();
+				
+//		whatever.removeFirst();
+//		whatever.removeLast();
+//		whatever.traverseBackward();
+		whatever.traverseForward();
 		System.out.println();
 	}
 }
