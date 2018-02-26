@@ -111,28 +111,27 @@ public class myDoublyLinkedList<E> {
 	}
 
 	public void changeData(E new_data, int index) {
-		Node new_node = new Node(new_data, index);
-		
-	
+		Node current = head.next;
+		while(current.next != null) {
+			System.out.println(current.data);
+			current = current.next;
 		}
-//		current.prev.next = current.next;
-//		current.next.prev = current.prev;
-//		current.next = null;
-//		current.prev = null;
-//		}
 
-//	public int size() {
-//		int counter = 1;
-//		if(head.next == null) {
-//			return counter;
-//		}
-//		Node current = head.next;
-//		while(current != null) {
-//			current = current.next;
-//			counter++;
-//		}
-//		return counter;
-//	}
+		return;
+	}
+
+	public int size() {
+		int counter = 1;
+		if(head.next == null) {
+			return counter;
+		}
+		Node current = head.next;
+		while(current != null) {
+			current = current.next;
+			counter++;
+		}
+		return counter;
+	}
 
 //	public int getSize() {
 //		Node temp = head.next;
@@ -161,7 +160,7 @@ public class myDoublyLinkedList<E> {
 		System.out.println();
 		
 //		whatever.removeFirst();
-     		whatever.removeLast();
+     	whatever.removeLast();
 //		whatever.addThis("Cats", 3);
 		whatever.traverseForward();
 		System.out.println();
