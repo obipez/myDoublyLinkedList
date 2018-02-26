@@ -190,3 +190,4 @@ public class myDoublyLinkedList<E> {
 		whatever.traverseBackward();
 		System.out.println();
 	}
+}
