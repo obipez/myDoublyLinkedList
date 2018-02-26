@@ -38,6 +38,7 @@ public class myDoublyLinkedList<E> {
 	}
 
 	public void traverseForward() {
+//		System.out.println("Here is the data:" + head.data);
 		Node current = head.next;
 		while(current.next != null) {
 			System.out.println(current.data);
@@ -48,6 +49,7 @@ public class myDoublyLinkedList<E> {
 	
 	
 	public void traverseBackward() {
+//		System.out.println("Here is the data:" + head.data);
 		Node current = tail.prev;
 		while(current.prev != null) {
 			System.out.println(current.data);
@@ -82,14 +84,16 @@ public class myDoublyLinkedList<E> {
 
 	public void removeFirst() {
 		Node current = head;
+		head.next.prev = null;
 		head = head.next;
 		current.next = null;
 	}
-
+	
 	public void removeLast() {
 		Node current = tail;
-		tail = tail.prev;
 		current.prev.next = null;
+		tail = tail.prev;
+		current.prev = null;
 	}
 
 	public void removeThis(int index) {		
@@ -152,13 +156,13 @@ public class myDoublyLinkedList<E> {
 		whatever.traverseForward();
 		System.out.println();
 
-		whatever.removeThis(2);
+		whatever.removeThis(1);
 		whatever.traverseForward();
 		System.out.println();
 		
-		whatever.removeFirst();
-		whatever.removeLast();
-		whatever.addThis("Cats", 3);
+//		whatever.removeFirst();
+     		whatever.removeLast();
+//		whatever.addThis("Cats", 3);
 		whatever.traverseForward();
 		System.out.println();
 
@@ -166,11 +170,10 @@ public class myDoublyLinkedList<E> {
 //		whatever.removeLast();
 //		whatever.traverseForward();
 //		System.out.println();
-				
+//				
 //		whatever.removeFirst();
-//		whatever.removeLast();
+		whatever.removeLast();
 		whatever.traverseBackward();
-//		whatever.traverseForward();
 		System.out.println();
 	}
 }
