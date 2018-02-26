@@ -20,11 +20,10 @@ public class myDoublyLinkedList<E> {
 			prev = null;
 		}
 
-
 		public Node(E newData, int index) {
 			Node current = head;
-			int counter = 1;
-			while(counter-1 != index) {
+			int counter = 0;
+			while(counter - 1 != index) {
 				current = current.next;
 				counter++;
 			}
@@ -38,24 +37,19 @@ public class myDoublyLinkedList<E> {
 	}
 
 	public void traverseForward() {
-//		System.out.println("Here is the data:" + head.data);
 		Node current = head.next;
 		while(current.next != null) {
 			System.out.println(current.data);
 			current = current.next;
 		}
-//		System.out.println(current.data);
 	}
 	
-	
 	public void traverseBackward() {
-//		System.out.println("Here is the data:" + head.data);
 		Node current = tail.prev;
 		while(current.prev != null) {
 			System.out.println(current.data);
 			current = current.prev;
 		}
-//		System.out.println(current.data);
 	}
 
 	public void addFirst(E new_data) {
@@ -70,7 +64,7 @@ public class myDoublyLinkedList<E> {
 
 	public void addThis(E new_data, int index) {
 		if(index < 0 || index > size()) {
-			System.out.println("Invalid");
+			System.out.println("Invalid index!!");
 			return;
 		}
 		Node new_node = new Node();
@@ -79,9 +73,9 @@ public class myDoublyLinkedList<E> {
 
 		if(index == 0) {
 			addFirst(new_data);
-		}else if(index == size()){
+		} else if(index == size()){
 			addLast(new_data);
-		}else {
+		} else {
 			Node current = head;
 			for(int i = 0; i < index; i++) {
 				current = current.next;
@@ -119,12 +113,11 @@ public class myDoublyLinkedList<E> {
 
 	public void removeThis(int index) {		
 		Node current = head;
-		int counter = 1;
-		while(counter-1 != index) {
+		int counter = 0;
+		while(counter - 1 != index) {
 			counter++;
 			current = current.next;
 		}
-//		System.out.println("This is: " + current.data);
 		current.prev.next = current.next;
 		current.next.prev = current.prev;
 		current.next = null;
@@ -134,7 +127,7 @@ public class myDoublyLinkedList<E> {
 	public void changeData(E new_data, int index) {
 
 		Node current = head.next;
-		int counter = 1;
+		int counter = 0;
 		while(counter != index){
 			current = current.next;
 			counter++;
@@ -142,12 +135,11 @@ public class myDoublyLinkedList<E> {
 		current.data = new_data;
 	}
 
-
 	public int size() {
 		if(head.next == null) {
 			return 0;
 		}
-		int counter = 1;
+		int counter = 0;
 		Node current = head.next;
 		while(current.next != null) {
 			counter++;
@@ -159,7 +151,7 @@ public class myDoublyLinkedList<E> {
 	public static void main(String[] args) {
 		myDoublyLinkedList<String> whatever = new myDoublyLinkedList<String>();
 
-		System.out.println("addFirst, addLast, and traverseForward");
+		System.out.println("The list showing: addFirst, addLast, and traverseForward");
 		whatever.addFirst("Molly");
 		whatever.addFirst("Bongos");
 		whatever.addFirst("Ivan");
@@ -169,24 +161,27 @@ public class myDoublyLinkedList<E> {
 		whatever.traverseForward();
 		System.out.println();
 
-		System.out.println("removeThis");
+		System.out.println("The list showing: removeThis");
 		whatever.removeThis(2);
 		whatever.traverseForward();
 		System.out.println();
 		
-		System.out.println("removeFirst and addThis");
+		System.out.println("The list showing: removeFirst and addThis");
+		whatever.size();
 		whatever.removeFirst();
 		whatever.addThis("Cats", 3);
 		whatever.traverseForward();
 		System.out.println();
 
-		System.out.println("removeLast and changeData");
+		System.out.println("The list showing: removeLast and changeData");
 		whatever.removeLast();
 		whatever.changeData("Fishies", 3);
 		whatever.traverseForward();
 		System.out.println();
 
-		System.out.println("traverseBackward");
+		System.out.println("The list showing: traverseBackward");
+		whatever.addThis("Jujube", 5);
+		whatever.addThis("Jujube", 0);
 		whatever.traverseBackward();
 		System.out.println();
 	}
