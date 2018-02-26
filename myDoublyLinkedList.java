@@ -69,9 +69,30 @@ public class myDoublyLinkedList<E> {
 	}
 
 	public void addThis(E new_data, int index) {
-		Node new_node = new Node(new_data, index);
-	}
+		if(index < 0 || index > size()) {
+			System.out.println("Invalid");
+			return;
+		}
+		Node new_node = new Node();
+		new_node.data = new_data;
+		new_node.next = null;
 
+		if(index == 0) {
+			addFirst(new_data);
+		}else if(index == size()){
+			addLast(new_data);
+		}else {
+			Node current = head;
+			for(int i = 0; i < index; i++) {
+				current = current.next;
+			}
+			new_node.prev = current;
+			new_node.next = current.next;
+			current.next.prev = new_node;
+			current.next = new_node;
+		}
+	}
+	
 	public void addLast(E new_data) {
 		Node new_node = new Node();
 		new_node.data = new_data;
@@ -111,41 +132,34 @@ public class myDoublyLinkedList<E> {
 	}
 
 	public void changeData(E new_data, int index) {
+
 		Node current = head.next;
-		while(current.next != null) {
-			System.out.println(current.data);
-			current = current.next;
-		}
-
-		return;
-	}
-
-	public int size() {
 		int counter = 1;
-		if(head.next == null) {
-			return counter;
-		}
-		Node current = head.next;
-		while(current != null) {
+		while(counter != index){
 			current = current.next;
 			counter++;
 		}
-		return counter;
+		current.data = new_data;
 	}
 
-//	public int getSize() {
-//		Node temp = head.next;
-//		int count = 1;
-//		while(temp.next.data != null) {
-//			count++;
-//			temp = temp.next;
-//		}
-//		return count;
-//	}
+
+	public int size() {
+		if(head.next == null) {
+			return 0;
+		}
+		int counter = 1;
+		Node current = head.next;
+		while(current.next != null) {
+			counter++;
+			current = current.next;
+		}	
+		return counter;
+	}
 	
 	public static void main(String[] args) {
 		myDoublyLinkedList<String> whatever = new myDoublyLinkedList<String>();
 
+		System.out.println("addFirst, addLast, and traverseForward");
 		whatever.addFirst("Molly");
 		whatever.addFirst("Bongos");
 		whatever.addFirst("Ivan");
@@ -155,24 +169,24 @@ public class myDoublyLinkedList<E> {
 		whatever.traverseForward();
 		System.out.println();
 
-		whatever.removeThis(1);
+		System.out.println("removeThis");
+		whatever.removeThis(2);
 		whatever.traverseForward();
 		System.out.println();
 		
-//		whatever.removeFirst();
-     	whatever.removeLast();
-//		whatever.addThis("Cats", 3);
+		System.out.println("removeFirst and addThis");
+		whatever.removeFirst();
+		whatever.addThis("Cats", 3);
 		whatever.traverseForward();
 		System.out.println();
 
-//		whatever.changeData("Fishies", 3);
-//		whatever.removeLast();
-//		whatever.traverseForward();
-//		System.out.println();
-//				
-//		whatever.removeFirst();
+		System.out.println("removeLast and changeData");
 		whatever.removeLast();
+		whatever.changeData("Fishies", 3);
+		whatever.traverseForward();
+		System.out.println();
+
+		System.out.println("traverseBackward");
 		whatever.traverseBackward();
 		System.out.println();
 	}
-}
